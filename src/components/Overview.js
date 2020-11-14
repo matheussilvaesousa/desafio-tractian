@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import drilldown from "highcharts/modules/drilldown";
@@ -6,11 +6,8 @@ import { Typography, Statistic, Row, Col } from "antd";
 
 const { Text } = Typography;
 
-const options = {
-  title: {
-    text: "Visão Geral",
-  },
-};
+// drilldown(Highcharts);
+let dataSumOptions = {};
 
 function Overview(props) {
   const data = props.data;
@@ -29,6 +26,10 @@ function Overview(props) {
       dataSum[property] += unit.data[property];
     }
   });
+
+  useEffect(() => {
+    dataSumOptions = dataSum;
+  }, []);
 
   return (
     <Row id="overview" gutter={16} justify="space-around">
@@ -57,7 +58,44 @@ function Overview(props) {
         />
       </Col>
       <Col>
-        <HighchartsReact highcharts={Highcharts} options={options} />
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={{
+            chart: {
+              type: "pie",
+            },
+            xAxis: {
+              type: "category",
+            },
+            yAxis: {
+              title: "Número de ativos",
+            },
+            series: [
+              {
+                name: "Browsers",
+                colorByPoint: true,
+                data: [
+                  {
+                    name: "Em uso",
+                    y: dataSum.inUse,
+                  },
+                  {
+                    name: "Disponíveis",
+                    y: dataSum.available,
+                  },
+                  {
+                    name: "Em alerta",
+                    y: dataSum.onAlert,
+                  },
+                  {
+                    name: "Em manutenção",
+                    y: dataSum.underMaintenance,
+                  },
+                ],
+              },
+            ],
+          }}
+        />
       </Col>
     </Row>
   );
