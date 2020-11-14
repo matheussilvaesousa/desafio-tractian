@@ -1,24 +1,103 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Layout, Menu, Breadcrumb, Typography } from "antd";
+import {
+  HomeOutlined,
+  EyeOutlined,
+  AreaChartOutlined,
+} from "@ant-design/icons";
+import SwitchComponents from "./SwitchComponents";
+import "./styles/global.css";
+
+import Unit from "./components/Unit";
+import Overview from "./components/Overview";
+import Stats from "./components/Stats";
+
+const { Header, Sider, Content, Footer } = Layout;
+const { SubMenu } = Menu;
+const { Title } = Typography;
 
 function App() {
+  const [data, setData] = useState([]);
+  const [activeContent, setActiveContent] = useState("overview");
+  const [unitIndex, setUnitIndex] = useState(0);
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await axios("https://app.tractian.com/api/test.json");
+      setData(result.data.units);
+    }
+    fetchData();
+  }, []);
+
+  async function handleContent(content, index) {
+    setActiveContent(content);
+    setUnitIndex(index);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout id="main">
+      <Header>
+        <Title style={{ color: "white", marginTop: 10 }} level={2}>
+          Placeholder
+        </Title>
+      </Header>
+      <Layout>
+        <Sider id="sider">
+          <Menu mode="inline">
+            <SubMenu
+              title={
+                <span>
+                  <HomeOutlined />
+                  <span>Unidades</span>
+                </span>
+              }
+            >
+              <Menu.ItemGroup key="units">
+                {data.map((unit, index) => {
+                  return (
+                    <Menu.Item
+                      key={index}
+                      onClick={() => handleContent("unit", index)}
+                    >
+                      {unit.name}
+                    </Menu.Item>
+                  );
+                })}
+              </Menu.ItemGroup>
+            </SubMenu>
+            <Menu.Item onClick={() => handleContent("overview")}>
+              <AreaChartOutlined />
+              <span>Visão Geral</span>
+            </Menu.Item>
+            {/* <Menu.Item onClick={() => handleContent("stats")}>
+              <EyeOutlined />
+              <span>Estatísticas</span>
+            </Menu.Item> */}
+          </Menu>
+        </Sider>
+        <Layout>
+          <Content style={{ padding: "0 50px" }}>
+            <Breadcrumb style={{ margin: "16px 0" }}>
+              <Breadcrumb.Item>Placeholder</Breadcrumb.Item>
+              <Breadcrumb.Item>
+                {activeContent === "unit"
+                  ? `${data[unitIndex].name}`
+                  : activeContent.replace(/\w/, (char) => char.toUpperCase())}
+              </Breadcrumb.Item>
+            </Breadcrumb>
+            <div id="site-layout-content">
+              <SwitchComponents active={activeContent}>
+                <Unit name="unit" title="unit" data={data} index={unitIndex} />
+                <Overview name="overview" data={data} />
+                <Stats name="stats" data={data} />
+              </SwitchComponents>
+            </div>
+          </Content>
+          <Footer id="footer">Desafio Tractian 2020 ®</Footer>
+        </Layout>
+      </Layout>
+    </Layout>
   );
 }
 
