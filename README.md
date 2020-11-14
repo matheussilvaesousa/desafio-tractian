@@ -9,11 +9,13 @@ Estrutura da Página
     - Health Score
     - Insights Pendentes
     - Insights Resolvidos
-    - Gráfico 4 Categorias com Highcharts (em uso, disponíveis, em alerta, em manutenção)
+
+  - Gráfico 4 Categorias com Highcharts (em uso, disponíveis, em alerta, em manutenção)
 
 - Visão Geral
 
   - Dados
+
     - countAssets
     - inUse
     - available
@@ -21,8 +23,6 @@ Estrutura da Página
     - underMaintenance
     - insightsPending
     - insightsChecked
-
-- Gráficos
 
 # Getting Started with Create React App
 
