@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/desafio-tractian/static/css/main.142dafb1.chunk.css",
+    "main.js": "/desafio-tractian/static/js/main.87f217a2.chunk.js",
+    "main.js.map": "/desafio-tractian/static/js/main.87f217a2.chunk.js.map",
+    "runtime-main.js": "/desafio-tractian/static/js/runtime-main.8f50cab6.js",
+    "runtime-main.js.map": "/desafio-tractian/static/js/runtime-main.8f50cab6.js.map",
+    "static/css/2.a10ec74d.chunk.css": "/desafio-tractian/static/css/2.a10ec74d.chunk.css",
+    "static/js/2.dc078732.chunk.js": "/desafio-tractian/static/js/2.dc078732.chunk.js",
+    "static/js/2.dc078732.chunk.js.map": "/desafio-tractian/static/js/2.dc078732.chunk.js.map",
+    "static/js/3.fb205a49.chunk.js": "/desafio-tractian/static/js/3.fb205a49.chunk.js",
+    "static/js/3.fb205a49.chunk.js.map": "/desafio-tractian/static/js/3.fb205a49.chunk.js.map",
+    "index.html": "/desafio-tractian/index.html",
+    "static/css/2.a10ec74d.chunk.css.map": "/desafio-tractian/static/css/2.a10ec74d.chunk.css.map",
+    "static/css/main.142dafb1.chunk.css.map": "/desafio-tractian/static/css/main.142dafb1.chunk.css.map",
+    "static/js/2.dc078732.chunk.js.LICENSE.txt": "/desafio-tractian/static/js/2.dc078732.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8f50cab6.js",
+    "static/css/2.a10ec74d.chunk.css",
+    "static/js/2.dc078732.chunk.js",
+    "static/css/main.142dafb1.chunk.css",
+    "static/js/main.87f217a2.chunk.js"
+  ]
+}
