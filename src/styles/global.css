@@ -23,3 +23,34 @@
 #overview {
   text-align: center;
 }
+
+.card {
+  cursor: pointer;
+  width: 290px;
+  margin: 10px;
+}
+
+.image-description {
+  margin-top: 10px;
+}
+
+.description-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 0 30px;
+}
+
+.description-title {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.description-text {
+  font-size: 18px;
+}
+
+.modal-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.45);
+}

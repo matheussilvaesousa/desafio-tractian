@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Layout, Menu, Breadcrumb, Typography } from "antd";
-import {
-  HomeOutlined,
-  EyeOutlined,
-  AreaChartOutlined,
-} from "@ant-design/icons";
+import { HomeOutlined, AreaChartOutlined } from "@ant-design/icons";
 import SwitchComponents from "./SwitchComponents";
 import "./styles/global.css";
 
 import Unit from "./components/Unit";
 import Overview from "./components/Overview";
-import Stats from "./components/Stats";
 
 const { Header, Sider, Content, Footer } = Layout;
 const { SubMenu } = Menu;
@@ -44,7 +39,7 @@ function App() {
       </Header>
       <Layout>
         <Sider id="sider">
-          <Menu mode="inline">
+          <Menu mode="inline" defaultSelectedKeys={["overview"]}>
             <SubMenu
               title={
                 <span>
@@ -66,14 +61,10 @@ function App() {
                 })}
               </Menu.ItemGroup>
             </SubMenu>
-            <Menu.Item onClick={() => handleContent("overview")}>
+            <Menu.Item key="overview" onClick={() => handleContent("overview")}>
               <AreaChartOutlined />
               <span>Visão Geral</span>
             </Menu.Item>
-            {/* <Menu.Item onClick={() => handleContent("stats")}>
-              <EyeOutlined />
-              <span>Estatísticas</span>
-            </Menu.Item> */}
           </Menu>
         </Sider>
         <Layout>
@@ -83,14 +74,13 @@ function App() {
               <Breadcrumb.Item>
                 {activeContent === "unit"
                   ? `${data[unitIndex].name}`
-                  : activeContent.replace(/\w/, (char) => char.toUpperCase())}
+                  : activeContent.replace(/^\w/, (char) => char.toUpperCase())}
               </Breadcrumb.Item>
             </Breadcrumb>
             <div id="site-layout-content">
               <SwitchComponents active={activeContent}>
                 <Unit name="unit" title="unit" data={data} index={unitIndex} />
                 <Overview name="overview" data={data} />
-                <Stats name="stats" data={data} />
               </SwitchComponents>
             </div>
           </Content>

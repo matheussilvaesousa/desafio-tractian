@@ -1,13 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import drilldown from "highcharts/modules/drilldown";
-import { Typography, Statistic, Row, Col } from "antd";
-
-const { Text } = Typography;
-
-// drilldown(Highcharts);
-let dataSumOptions = {};
+import { Statistic, Row, Col, Divider } from "antd";
 
 function Overview(props) {
   const data = props.data;
@@ -21,18 +15,14 @@ function Overview(props) {
     insightsChecked: 0,
   };
 
-  data.map((unit) => {
+  data.forEach((unit) => {
     for (const property in unit.data) {
       dataSum[property] += unit.data[property];
     }
   });
 
-  useEffect(() => {
-    dataSumOptions = dataSum;
-  }, []);
-
   return (
-    <Row id="overview" gutter={16} justify="space-around">
+    <Row id="overview" gutter={48} justify="space-around">
       <Col span={3}>
         <Statistic title="Total de ativos" value={dataSum.countAssets} />
       </Col>
@@ -57,18 +47,16 @@ function Overview(props) {
           value={dataSum.insightsChecked}
         />
       </Col>
-      <Col>
+      <Divider />
+      <Col span={12}>
         <HighchartsReact
           highcharts={Highcharts}
           options={{
             chart: {
               type: "pie",
             },
-            xAxis: {
-              type: "category",
-            },
-            yAxis: {
-              title: "Número de ativos",
+            title: {
+              text: "Ativos",
             },
             series: [
               {
@@ -90,6 +78,35 @@ function Overview(props) {
                   {
                     name: "Em manutenção",
                     y: dataSum.underMaintenance,
+                  },
+                ],
+              },
+            ],
+          }}
+        />
+      </Col>
+      <Col>
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={{
+            chart: {
+              type: "pie",
+            },
+            title: {
+              text: "Insights",
+            },
+            series: [
+              {
+                name: "Browsers",
+                colorByPoint: true,
+                data: [
+                  {
+                    name: "Insights pendentes",
+                    y: dataSum.insightsPending,
+                  },
+                  {
+                    name: "Insights resolvidos",
+                    y: dataSum.insightsChecked,
                   },
                 ],
               },
