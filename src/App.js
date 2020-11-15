@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await axios("https://app.tractian.com/api/test.json");
+      const result = await axios("http://test.motor.tractian.com/api/test");
       setData(result.data.units);
     }
     fetchData();
