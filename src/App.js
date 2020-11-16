@@ -21,7 +21,7 @@ function App() {
     async function fetchData() {
       const apiCall = await api();
       console.log(apiCall);
-      return await setData(apiCall.data.units);
+      return setData(apiCall.data.units);
     }
     fetchData();
   }, []);
@@ -75,7 +75,7 @@ function App() {
               <Breadcrumb.Item>
                 {activeContent === "unit"
                   ? `${data[unitIndex].name}`
-                  : activeContent.replace(/^\w/, (char) => char.toUpperCase())}
+                  : activeContent === "overview" && "Visão geral"}
               </Breadcrumb.Item>
             </Breadcrumb>
             <div id="site-layout-content">
