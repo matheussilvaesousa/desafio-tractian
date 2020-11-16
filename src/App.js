@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Layout, Menu, Breadcrumb, Typography } from "antd";
 import { HomeOutlined, AreaChartOutlined } from "@ant-design/icons";
 import SwitchComponents from "./SwitchComponents";
 import "./styles/global.css";
+
+import api from "./api";
 
 import Unit from "./components/Unit";
 import Overview from "./components/Overview";
@@ -19,8 +20,8 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await axios("http://test.motor.tractian.com/api/test");
-      setData(result.data.units);
+      const apiData = await api();
+      return setData(apiData.data.units);
     }
     fetchData();
   }, []);
