@@ -19,7 +19,9 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      return setData(api.units);
+      const apiCall = await api();
+      console.log(apiCall);
+      return await setData(apiCall.data.units);
     }
     fetchData();
   }, []);
