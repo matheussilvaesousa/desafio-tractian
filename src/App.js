@@ -5,7 +5,6 @@ import SwitchComponents from "./SwitchComponents";
 import "./styles/global.css";
 
 import api from "./api";
-
 import Unit from "./components/Unit";
 import Overview from "./components/Overview";
 
@@ -20,8 +19,7 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const apiData = await api();
-      return setData(apiData.data.units);
+      return setData(api.units);
     }
     fetchData();
   }, []);

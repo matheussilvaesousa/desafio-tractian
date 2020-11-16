@@ -33,7 +33,6 @@ function Unit(props) {
   } = unitData.data;
 
   function handleOpenModal(index) {
-    console.log(unitData.data);
     setSelectedAsset(index);
     setVisible(true);
   }
