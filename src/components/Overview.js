@@ -58,6 +58,15 @@ function Overview(props) {
             title: {
               text: "Ativos",
             },
+            plotOptions: {
+              pie: {
+                colors: ["#67b7dc", "#6771dc", "#8067dc", "#c767dc", "#a367dc"],
+                dataLabels: {
+                  enabled: false,
+                },
+                showInLegend: true,
+              },
+            },
             series: [
               {
                 name: "Browsers",
@@ -94,6 +103,15 @@ function Overview(props) {
             },
             title: {
               text: "Insights",
+            },
+            plotOptions: {
+              pie: {
+                colors: ["#e9282a", "#4bb543"],
+                dataLabels: {
+                  enabled: false,
+                },
+                showInLegend: true,
+              },
             },
             series: [
               {
