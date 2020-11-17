@@ -120,7 +120,7 @@ function Unit(props) {
             })}
           </Row>
         </TabPane>
-        <TabPane tab="Estatísticas" key="stats  ">
+        <TabPane tab="Estatísticas" key="stats">
           <Row id="overview" gutter={48} justify="space-around">
             <Col span={3}>
               <Statistic title="Total de ativos" value={countAssets} />
